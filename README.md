@@ -1,4 +1,4 @@
-# Título del Proyecto
+# JustShop
 
 #### Curso Escolar 2022-2023
 #### Autor: [Daniel Verano Moreno](https://github.com/DanielVerano)
