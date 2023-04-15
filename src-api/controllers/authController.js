@@ -1,5 +1,5 @@
 const User = require('../models/User');
-const jwt = require('jsonwebtoken');
+const { createToken } = require('../utils');
 
 const register = async (req, res) => {
     const { name, surname, email, password } = req.body;
@@ -17,7 +17,7 @@ const register = async (req, res) => {
 
     // Crear payload y token de usuario
     const payloadUser = { name: user.name, userId: user._id, role: user.role };
-    const token = jwt.sign(payloadUser, process.env.JWT_SECRET, { expiresIn: '1d' });
+    const token = createToken(payloadUser);
 
     res.status(200).json({ payloadUser, token });
 }
@@ -37,12 +37,9 @@ const login = async (req, res) => {
 
     // Crear payload y token de usuario
     const payloadUser = { name: user.name, userId: user._id, role: user.role };
-    const token = jwt.sign(payloadUser, process.env.JWT_SECRET, { expiresIn: '1d' });
+    const token = createToken(payloadUser);
 
     res.status(200).json({ payloadUser, token });
 }
-const logout = async (req, res) => {
-    res.send('logout');
-}
 
-module.exports = { register, login, logout };
+module.exports = { register, login };
