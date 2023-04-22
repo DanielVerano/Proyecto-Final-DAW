@@ -17,8 +17,16 @@ const filters_reducer = (state, action) => {
   }
 
   if (action.type === 'FILTER_PRODUCTS') {
+    const { all_products } = state;
+    const { text, category, price } = state.filters;
+    let tempProducts = [...all_products];
+
+    if (text) tempProducts = tempProducts.filter((p) => p.name.toLowerCase().startsWith(text));
+    if (category !== 'all') tempProducts = tempProducts.filter((p) => p.category === category);
+    if (price < state.filters.max_price) tempProducts = tempProducts.filter((p) => p.price <= price);
+
     return {
-      ...state,
+      ...state, filtered_products: tempProducts
     }
   }
 
