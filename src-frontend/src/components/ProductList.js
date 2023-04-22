@@ -6,7 +6,7 @@ const ProductList = () => {
   const { filtered_products } = useFilterContext();
 
   return (
-    <section className='d-flex justify-content-between'>
+    <section className='d-flex justify-content-between flex-wrap'>
       {filtered_products.map((product) => {
         return <ProductCard key={product._id} {...product} />
       })}

@@ -6,7 +6,7 @@ import { formatPrice } from '../utils/helpers';
 
 const ProductCard = ({ image, name, price, _id }) => {
   return (
-    <Wrapper className='col-lg-4 py-2'>
+    <Wrapper className='py-2'>
       <div className='text-center'>
         <img src={image} alt="placeholder" className='img-fluid' />
       </div>
