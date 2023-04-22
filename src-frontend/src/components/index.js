@@ -6,6 +6,8 @@ import FeaturedProducts from "./FeaturedProducts";
 import ProductCard from "./ProductCard";
 import Loading from "./Loading";
 import Error from "./Error";
+import Filters from "./Filters";
+import ProductList from "./ProductList";
 
 export {
     Navbar,
@@ -15,5 +17,7 @@ export {
     FeaturedProducts,
     ProductCard,
     Loading,
-    Error
+    Error,
+    Filters,
+    ProductList
 }
