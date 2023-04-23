@@ -9,6 +9,7 @@ import Error from "./Error";
 import Filters from "./Filters";
 import ProductList from "./ProductList";
 import Stars from "./Stars";
+import AddToCart from "./AddToCart";
 
 export {
     Navbar,
@@ -21,5 +22,6 @@ export {
     Error,
     Filters,
     ProductList,
-    Stars
+    Stars,
+    AddToCart
 }

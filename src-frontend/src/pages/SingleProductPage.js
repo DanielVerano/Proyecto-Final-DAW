@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useProductsContext } from '../context/products_context'
-import { Breadcrumb, Loading, Error, Stars } from "../components";
+import { Breadcrumb, Loading, Error, Stars, AddToCart } from "../components";
 import styled from 'styled-components'
 import { formatPrice } from '../utils/helpers'
 
@@ -47,6 +47,7 @@ const SingleProductPage = () => {
               <span>{category}</span>
             </p>
             <hr />
+            {stock > 0 && <AddToCart product={single_product} />}
           </div>
         </div>
       </Wrapper>
