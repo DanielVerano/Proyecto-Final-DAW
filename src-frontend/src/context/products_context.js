@@ -29,12 +29,23 @@ export const ProductsProvider = ({ children }) => {
     }
   }
 
+  const fetchSingleProduct = async (id) => {
+    dispatch({ type: 'GET_SINGLE_PRODUCT_BEGIN' });
+
+    try {
+      const resp = await axios.get(`${url}/products/${id}`);
+      dispatch({ type: 'GET_SINGLE_PRODUCT_SUCCESS', payload: resp.data });
+    } catch (error) {
+      dispatch({ type: 'GET_SINGLE_PRODUCT_ERROR' });
+    }
+  }
+
   useEffect(() => {
     fetchProducts(url);
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ ...state }}>
+    <ProductsContext.Provider value={{ ...state, fetchSingleProduct }}>
       {children}
     </ProductsContext.Provider>
   )
