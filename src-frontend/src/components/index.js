@@ -8,6 +8,7 @@ import Loading from "./Loading";
 import Error from "./Error";
 import Filters from "./Filters";
 import ProductList from "./ProductList";
+import Stars from "./Stars";
 
 export {
     Navbar,
@@ -19,5 +20,6 @@ export {
     Loading,
     Error,
     Filters,
-    ProductList
+    ProductList,
+    Stars
 }
