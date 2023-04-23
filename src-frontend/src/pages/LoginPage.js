@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { apiUrl } from '../utils/constants'
 import { useUserContext } from '../context/user_context'
@@ -39,10 +39,7 @@ const LoginPage = () => {
       setMyUser({ name, userId, role, token });
       localStorage.setItem('user', JSON.stringify({ name, userId, role, token }));
 
-      setTimeout(() => {
-        setIsLoading(false);
-        navigate('/');
-      }, 1000);
+      setIsLoading(false);
     } catch (error) {
       // console.log(error.response);
       setIsLoading(false);
@@ -51,14 +48,18 @@ const LoginPage = () => {
     }
   }
 
-  if (myUser) {
-    navigate('/dashboard');
-  }
+  useEffect(() => {
+    if (myUser) {
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 2000);
+    }
+  }, [myUser])
 
   return (
     <>
       <Breadcrumb title='Login' />
-      <section className='w-100 d-flex flex-column align-items-center justify-content-center' style={{ minHeight: `calc(100vh - (20vh + 10rem))` }}>
+      <section className='w-100 d-flex flex-column align-items-center justify-content-center' style={{ minHeight: `calc(100vh - (10vh + 10rem))` }}>
         <h2 className='text-center'>Login</h2>
         <form className='w-100' style={{ maxWidth: '22rem' }} onSubmit={handleSubmit}>
           <div className="mb-3">

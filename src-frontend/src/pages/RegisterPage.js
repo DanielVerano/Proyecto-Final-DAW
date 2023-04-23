@@ -58,7 +58,7 @@ const RegisterPage = () => {
   return (
     <>
       <Breadcrumb title='Registro' />
-      <section className='w-100 d-flex flex-column align-items-center justify-content-center' style={{ minHeight: `calc(100vh - (20vh + 10rem))` }}>
+      <section className='w-100 d-flex flex-column align-items-center justify-content-center' style={{ minHeight: `calc(100vh - (10vh + 10rem))` }}>
         <h2 className='text-center'>Registro</h2>
         <form className='w-100' style={{ maxWidth: '22rem' }} onSubmit={handleSubmit}>
           <div className="mb-3">
