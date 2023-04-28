@@ -10,9 +10,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 // routes
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const usersRouter = require('./routes/userRoutes');
 const authRouter = require('./routes/authRoutes');
+// const productRouter = require('./routes/productRoutes');
 
 var app = express();
 
@@ -27,9 +27,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// app.use('/api/v1', (req, res) => {
+//   res.send('home');
+// });
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/users', usersRouter);
+// app.use('/api/v1/products', productRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -44,7 +47,8 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({ msg: err.message });
+  // res.render('error');
 });
 
 const start = async () => {
