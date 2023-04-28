@@ -8,10 +8,10 @@ const ProductsPage = () => {
       <Breadcrumb title='Products' />
       <Wrapper className='min-vh-100'>
         <div className='d-flex w-100 my-3 mx-auto'>
-          <div className="col-lg-3" >
+          <div className="col-lg-3 col-sm-4 px-2" >
             <Filters />
           </div>
-          <div className="col-lg-9">
+          <div className="col-lg-9 col-sm-8">
             <ProductList />
           </div>
         </div>

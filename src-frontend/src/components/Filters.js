@@ -10,7 +10,7 @@ const Filters = () => {
     clearFilters } = useFilterContext();
 
   return (
-    <Wrapper className='sticky-lg-top'>
+    <Wrapper className='sticky-sm-top'>
       <form onSubmit={e => e.preventDefault()}>
         <div className="mb-3">
           <label htmlFor="text" className='form-label fw-bold'>Texto:</label>

@@ -23,10 +23,10 @@ const SingleProductPage = () => {
       <Wrapper className='container py-5'>
         <Link to="/products" className='btn btn-primary'>Volver atrás</Link>
         <div className="d-flex my-3 flex-wrap">
-          <div className="image col-lg-6">
+          <div className="image col-md-6 p-2">
             <img src={image} alt={name} className='img-fluid' />
           </div>
-          <div className="col-lg-6">
+          <div className="col-md-6 p-2">
             <h2>{name}</h2>
             <Stars reviews={numOfReviews} rating={averageRating} />
             <span className='price fw-bold mb-2'>{formatPrice(price)}</span>
