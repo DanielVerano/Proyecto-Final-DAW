@@ -11,6 +11,7 @@ import ProductList from "./ProductList";
 import Stars from "./Stars";
 import AddToCart from "./AddToCart";
 import CartItem from "./CartItem";
+import StripeCheckout from "./StripeCheckout";
 
 export {
     Navbar,
@@ -25,5 +26,6 @@ export {
     ProductList,
     Stars,
     AddToCart,
-    CartItem
+    CartItem,
+    StripeCheckout
 }
