@@ -28,8 +28,8 @@ const App = () => {
           <Route path="admin" element={<AdminPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
-        <Footer />
       </div>
+      <Footer />
     </BrowserRouter>
   )
 }

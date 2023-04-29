@@ -4,6 +4,7 @@ import { useUserContext } from '../context/user_context';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { apiUrl } from '../utils/constants'
+import styled from 'styled-components';
 
 const RegisterPage = () => {
   const [name, setName] = useState('');
@@ -58,7 +59,7 @@ const RegisterPage = () => {
   return (
     <>
       <Breadcrumb title='Registro' />
-      <section className='w-100 d-flex flex-column align-items-center justify-content-center' style={{ minHeight: `calc(100vh - (10vh + 10rem))` }}>
+      <Wrapper className='w-100 d-flex flex-column align-items-center justify-content-center'>
         <h2 className='text-center'>Registro</h2>
         <form className='w-100' style={{ maxWidth: '22rem' }} onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -107,11 +108,15 @@ const RegisterPage = () => {
             </div>
               : <button type="submit" className="btn btn-primary">Enviar</button>}
           </div>
-          {error && <div className="alert alert-danger my-2" role="alert">{errorMsg}</div>}
+          {error && <div className="alert alert-danger" role="alert">{errorMsg}</div>}
         </form>
-      </section>
+      </Wrapper>
     </>
   )
 }
+
+const Wrapper = styled.section`
+  min-height: calc(100vh - (10vh + 10rem));
+`
 
 export default RegisterPage
