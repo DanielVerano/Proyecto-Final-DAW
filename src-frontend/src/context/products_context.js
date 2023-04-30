@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useReducer } from 'react'
 import axios from 'axios'
 import reducer from '../reducers/products_reducer'
-import { apiUrl as url } from '../utils/constants'
+import { apiUrl as url, baseUrl } from '../utils/constants'
 
 const initialState = {
   products_loading: false,
@@ -22,7 +22,11 @@ export const ProductsProvider = ({ children }) => {
 
     try {
       const response = await axios.get(`${url}/products`);
-      const products = response.data;
+      let products = response.data;
+      products = products.map((product) => {
+        product.image = `${baseUrl}${product.image}`;
+        return product;
+      });
       dispatch({ type: 'GET_PRODUCTS_SUCCESS', payload: products });
     } catch (error) {
       dispatch({ type: 'GET_PRODUCTS_ERROR' });

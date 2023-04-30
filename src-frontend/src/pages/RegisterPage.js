@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Breadcrumb } from '../components'
 import { useUserContext } from '../context/user_context';
 import { useNavigate } from 'react-router-dom';
@@ -25,7 +25,7 @@ const RegisterPage = () => {
     const user = { name, surname, email, password };
 
     try {
-      const { data } = axios.post(
+      const { data } = await axios.post(
         `${apiUrl}/auth/register`,
         JSON.stringify(user),
         {
@@ -38,13 +38,10 @@ const RegisterPage = () => {
       const { payloadUser, token } = data;
       const { name, userId, role } = payloadUser;
       setMyUser({ name, userId, role, token });
-      localStorage.setItem('user', { name, userId, role, token });
+      localStorage.setItem('user', JSON.stringify({ name, userId, role, token }));
 
-      setTimeout(() => {
-        setIsLoading(false);
-        setError(false);
-        navigate('/');
-      }, 1000);
+      setIsLoading(false);
+      setError(false);
     } catch (error) {
       setError(true);
       setIsLoading(false);
@@ -52,9 +49,13 @@ const RegisterPage = () => {
     }
   }
 
-  if (myUser) {
-    navigate('/dashboard');
-  }
+  useEffect(() => {
+    if (myUser) {
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
+    }
+  }, [myUser]);
 
   return (
     <>
@@ -102,11 +103,11 @@ const RegisterPage = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="d-grid gap-2 mb-3">
+          <div className="d-flex justify-content-center mb-3">
             {isLoading ? <div className="spinner-border" role="status">
               <span className="visually-hidden">Loading...</span>
             </div>
-              : <button type="submit" className="btn btn-primary">Enviar</button>}
+              : <button type="submit" className="btn btn-primary w-100">Enviar</button>}
           </div>
           {error && <div className="alert alert-danger" role="alert">{errorMsg}</div>}
         </form>

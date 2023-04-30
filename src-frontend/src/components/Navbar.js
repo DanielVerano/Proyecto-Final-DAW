@@ -77,6 +77,10 @@ const Navbar = () => {
 }
 
 const Wrapper = styled.section`
+  ul.navbar-nav .nav-link:hover {
+    border-bottom: 2px solid #48adff;
+  }
+
   .navbar-brand img {
     max-height: 3rem;
   }
