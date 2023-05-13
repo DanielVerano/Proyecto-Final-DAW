@@ -1,5 +1,6 @@
 import React from 'react'
-import logo from '../assets/logo-no-background.svg'
+// import logo from '../assets/logo-no-background.svg'
+import logo from '../assets/logo-header.png'
 import { useUserContext } from '../context/user_context'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'

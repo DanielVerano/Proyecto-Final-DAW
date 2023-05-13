@@ -1,7 +1,8 @@
 import React from 'react'
 import { BsFacebook, BsTwitter, BsInstagram } from 'react-icons/bs'
 import { FaCcVisa, FaCcMastercard } from 'react-icons/fa'
-import logo from '../assets/logo-footer.svg'
+// import logo from '../assets/logo-footer.svg'
+import logo from '../assets/logo-footer.png'
 import styled from 'styled-components'
 
 const Footer = () => {
