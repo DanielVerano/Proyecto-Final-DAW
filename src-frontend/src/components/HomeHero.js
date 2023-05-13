@@ -1,12 +1,12 @@
 import React from 'react'
-import placeholder from '../assets/product-placeholder.jpg'
+import landing_img from '../assets/landing-image.webp'
 import { Link } from 'react-router-dom'
 
 const HomeHero = () => {
   return (
     <section className='row align-items-center justify-content-center py-5'>
       <article className='col-lg-6 px-4 text-center'>
-        <img src={placeholder} alt="placeholder" style={{ maxWidth: '400px' }} />
+        <img src={landing_img} alt="placeholder" style={{ maxWidth: '100%' }} />
       </article>
       <article className='col-lg-6 px-4 text-center'>
         <h1>Bienvenid@ a Technify</h1>

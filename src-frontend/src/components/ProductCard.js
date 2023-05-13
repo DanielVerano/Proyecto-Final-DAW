@@ -12,7 +12,7 @@ const ProductCard = ({ image, name, price, _id }) => {
       </div>
       <footer className='d-flex flex-column'>
         <div className='d-flex justify-content-between'>
-          <h5>{name}</h5>
+          <h5>{name.length >= 40 ? `${name.substring(0, 40)}...` : name}</h5>
           <p>{formatPrice(price)}</p>
         </div>
         <div className='d-flex justify-content-end'>

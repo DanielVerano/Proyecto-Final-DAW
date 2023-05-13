@@ -8,7 +8,7 @@ const ProductList = () => {
   if (filtered_products.length < 1) return <h5>Lo sentimos, no se encontraron productos para mostrar.</h5>
 
   return (
-    <section className='d-flex justify-content-between flex-wrap'>
+    <section className='d-flex flex-wrap gap-4'>
       {filtered_products.map((product) => {
         return <ProductCard key={product._id} {...product} />
       })}

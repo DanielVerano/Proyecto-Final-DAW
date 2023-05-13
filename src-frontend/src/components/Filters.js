@@ -21,6 +21,8 @@ const Filters = () => {
           <select name="category" className="form-select" value={category} onChange={updateFilters}>
             <option value="all">Todas</option>
             <option value="smartphones">Smartphones</option>
+            <option value="auriculares">Auriculares</option>
+            <option value="portatiles">Portátiles</option>
           </select>
         </div>
         <div className="mb-3">

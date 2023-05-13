@@ -38,6 +38,8 @@ export const ProductsProvider = ({ children }) => {
 
     try {
       const resp = await axios.get(`${url}/products/${id}`);
+      const product = resp.data;
+      product.image = `${baseUrl}${product.image}`;
       dispatch({ type: 'GET_SINGLE_PRODUCT_SUCCESS', payload: resp.data });
     } catch (error) {
       dispatch({ type: 'GET_SINGLE_PRODUCT_ERROR' });
