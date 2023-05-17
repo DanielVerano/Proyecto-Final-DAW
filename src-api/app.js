@@ -29,14 +29,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
-// app.use('/api/v1', (req, res) => {
-//   res.send('home');
-// });
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/products', productRouter);
 app.use('/api/v1/orders', orderRouter);
 app.use('/api/v1/reviews', reviewRouter);
+
+app.use('/api/v1', (req, res) => {
+  res.send('home');
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
