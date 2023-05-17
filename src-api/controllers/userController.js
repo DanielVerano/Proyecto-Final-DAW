@@ -3,7 +3,7 @@ const { checkPermissions, createToken } = require('../utils');
 
 const getAllUsers = async (req, res) => {
     const users = await User.find({ role: 'user' }).select('-password');
-    res.status(200).json({ users });
+    res.status(200).json(users);
 }
 
 const getSingleUser = async (req, res) => {
@@ -12,7 +12,7 @@ const getSingleUser = async (req, res) => {
     if (!user) throw new Error(`No existe el usuario con id ${req.params.id}`);
     checkPermissions(req.user, user._id);
 
-    res.status(200).json({ user });
+    res.status(200).json(user);
 }
 
 const updateUser = async (req, res) => {
