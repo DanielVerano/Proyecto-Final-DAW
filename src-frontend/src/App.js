@@ -25,7 +25,11 @@ const App = () => {
           <Route path="products" element={<ProductsPage />} />
           <Route path="products/:productId" element={<SingleProductPage />} />
           <Route path="logout" element={<LogoutPage />} />
-          <Route path="admin" element={<AdminPage />} />
+          <Route path="admin/*" element={
+            <ProtectedRoute>
+              <AdminPage />
+            </ProtectedRoute>
+          } />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
