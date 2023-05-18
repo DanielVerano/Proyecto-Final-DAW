@@ -21,7 +21,7 @@ const DashboardPage = () => {
           }
         }
       );
-      setUser(response.data.user);
+      setUser(response.data);
     } catch (error) {
       console.log(error.response);
     }
