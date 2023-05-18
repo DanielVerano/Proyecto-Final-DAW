@@ -73,6 +73,26 @@ const CheckoutForm = () => {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
+
+      try {
+        const { data } = await axios.post(`${apiUrl}/orders`,
+          JSON.stringify({
+            total: total_amount,
+            shipping_fee,
+            cart,
+            client_secret: clientSecret
+          }),
+          {
+            headers: {
+              'Authorization': `Bearer ${myUser.token}`,
+              'Content-Type': 'application/json'
+            }
+          }
+        );
+        console.log(data);
+      } catch (error) {
+        console.log(error.response);
+      }
     }
   }
 
