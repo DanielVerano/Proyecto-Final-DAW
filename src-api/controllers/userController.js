@@ -1,5 +1,5 @@
 const User = require('../models/User');
-const { checkPermissions, createToken } = require('../utils');
+const { checkPermissions, createToken, handleUpload } = require('../utils');
 
 const getAllUsers = async (req, res) => {
     const users = await User.find({ role: 'user' }).select('-password');
@@ -52,6 +52,29 @@ const deleteUser = async (req, res) => {
     res.status(200).json({ msg: 'Usuario eliminado' });
 }
 
+const uploadImage = async (req, res) => {
+    try {
+        const b64 = Buffer.from(req.file.buffer).toString('base64');
+        let dataURI = `data:${req.file.mimetype};base64,${b64}`;
+        const cldRes = await handleUpload(dataURI);
+        res.status(200).json(cldRes);
+    } catch (error) {
+        res.status(400).json({
+            message: error
+        });
+    }
+}
+
+const updateAvatar = async (req, res) => {
+    const { avatar } = req.body;
+    const user = await User.findOneAndUpdate(
+        { _id: req.user.userId },
+        { avatar },
+        { new: true, runValidators: true });
+
+    res.status(200).json(user);
+}
+
 module.exports = {
-    getAllUsers, getSingleUser, updateUser, updateUserPassword, deleteUser
+    getAllUsers, getSingleUser, updateUser, updateUserPassword, deleteUser, uploadImage, updateAvatar
 }
