@@ -7,7 +7,9 @@ import {
   TextInput,
   ReferenceInput,
   Create,
-  useRecordContext
+  useRecordContext,
+  DateField,
+  SelectInput
 } from 'react-admin'
 
 const StatusField = (props) => {
@@ -30,7 +32,8 @@ export const OrderList = () => {
         <StatusField source="status" />
         {/* <TextField source="cartItems" /> */}
         <TextField source="user" />
-        <TextField source="clientSecret" />
+        <DateField source='createdAt' options={{ hour: 'numeric', minute: 'numeric', second: 'numeric' }} />
+        <DateField source='updatedAt' options={{ hour: 'numeric', minute: 'numeric', second: 'numeric' }} />
       </Datagrid>
     </List>
   )
@@ -41,7 +44,7 @@ export const OrderEdit = () => (
     <SimpleForm>
       <ReferenceInput source="id" reference="orders" />
       <TextInput source="total" />
-      <TextInput source="status" />
+      <SelectInput source="status" choices={[{ id: 'pendiente', name: 'Pendiente' }, { id: 'pagado', name: 'Pagado' }]} />
       {/* <TextInput source="cartItems" /> */}
       <TextInput source="user" />
       <TextInput source="clientSecret" />
