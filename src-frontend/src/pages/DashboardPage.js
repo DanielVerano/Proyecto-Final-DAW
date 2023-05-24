@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useUserContext } from '../context/user_context'
 import { Breadcrumb } from '../components'
 import styled from 'styled-components'
-import profile_pic from '../assets/profile-default.png'
 import axios from 'axios'
 import { apiUrl as url } from '../utils/constants'
 import { Link } from 'react-router-dom'
 
 const DashboardPage = () => {
-  const { myUser: { userId, token } } = useUserContext();
-  const [user, setUser] = useState({});
+  const { myUser: { userId, token }, setMyUser } = useUserContext();
+  const [user, setUser] = useState({ name: '', surname: '', email: '', avatar: '' });
+  const [image, setImage] = useState(null);
 
   const fetchUser = async () => {
     try {
@@ -21,7 +21,8 @@ const DashboardPage = () => {
           }
         }
       );
-      setUser(response.data);
+      const { name, surname, email, avatar } = response.data;
+      setUser({ name, surname, email, avatar });
     } catch (error) {
       console.log(error.response);
     }
@@ -35,16 +36,48 @@ const DashboardPage = () => {
 
   const updateProfile = async () => {
     try {
-      const response = await axios.post(
+      const response = await axios.patch(
         `${url}/users/updateUser`,
         JSON.stringify(user),
         {
           headers: {
-            Authorization: `Bearer ${token}`
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
           }
         }
       );
-      setUser(response.data.user);
+      setMyUser(response.data.user);
+    } catch (error) {
+      console.log(error.response);
+    }
+  }
+
+  const handleSelectFile = (e) => {
+    const image = e.target.files[0];
+    if (image.type.startsWith('image')) {
+      setImage(image);
+    }
+  }
+
+  const handleUpload = async (e) => {
+    const data = new FormData();
+    data.set('image', image);
+    try {
+      // 1era petición: Subir imagen a Cloudinary
+      const res = await axios.post(`${url}/users/upload`, data);
+      // 2nda petición: Actualizar avatar del usuario
+      const res2 = await axios.patch(
+        `${url}/users/updateAvatar`,
+        JSON.stringify({ ...user, avatar: res.data.secure_url }),
+        {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          }
+        }
+      );
+      const { name, surname, email, avatar } = res2.data;
+      setUser({ name, surname, email, avatar });
     } catch (error) {
       console.log(error.response);
     }
@@ -59,9 +92,10 @@ const DashboardPage = () => {
       <Breadcrumb title='Dashboard' />
       <Wrapper className='d-flex flex-wrap align-items-center p-3'>
         <div className="col-12 col-md-6 text-center p-3">
-          <img src={profile_pic} alt="profile_pic" className='img-fluid' />
+          <img src={user.avatar} alt="profile_pic" className='img-fluid avatar' />
           <div className='my-3'>
-            <button className="btn btn-warning">Editar Avatar</button>
+            <input type="file" name="image" id="image" onChange={handleSelectFile} multiple={false} accept='image/*' />
+            {image && <button className="btn btn-warning my-2" onClick={handleUpload}>Editar Avatar</button>}
           </div>
         </div>
         <div className=" col-12 col-md-6 p-3">
@@ -87,6 +121,10 @@ const DashboardPage = () => {
 
 const Wrapper = styled.section`
   min-height: calc(100vh - (10vh + 8rem));
+
+  .avatar {
+    max-width: 400px;
+  }
 `
 
 export default DashboardPage
