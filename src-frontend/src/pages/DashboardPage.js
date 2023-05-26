@@ -121,10 +121,6 @@ const DashboardPage = () => {
 
 const Wrapper = styled.section`
   min-height: calc(100vh - (10vh + 8rem));
-
-  .avatar {
-    max-width: 400px;
-  }
 `
 
 export default DashboardPage

@@ -10,6 +10,7 @@ import RegisterPage from "./RegisterPage";
 import SingleProductPage from "./SingleProductPage";
 import AdminPage from "./AdminPage"
 import LogoutPage from "./LogoutPage"
+import EditPasswordPage from "./EditPasswordPage"
 
 export {
     CartPage,
@@ -23,5 +24,6 @@ export {
     RegisterPage,
     SingleProductPage,
     AdminPage,
-    LogoutPage
+    LogoutPage,
+    EditPasswordPage
 }

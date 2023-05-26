@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { CartPage, CheckoutPage, DashboardPage, ErrorPage, HomePage, LoginPage, LogoutPage, ProductsPage, ProtectedRoute, RegisterPage, SingleProductPage, AdminPage } from './pages'
+import { CartPage, CheckoutPage, DashboardPage, ErrorPage, HomePage, LoginPage, LogoutPage, ProductsPage, ProtectedRoute, RegisterPage, SingleProductPage, AdminPage, EditPasswordPage } from './pages'
 import { Footer, Navbar } from "./components";
 
 const App = () => {
@@ -20,6 +20,11 @@ const App = () => {
           <Route path="dashboard" element={
             <ProtectedRoute>
               <DashboardPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/editPassword" element={
+            <ProtectedRoute>
+              <EditPasswordPage />
             </ProtectedRoute>
           } />
           <Route path="products" element={<ProductsPage />} />
