@@ -14,6 +14,10 @@ const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [errorPassword, setErrorPassword] = useState(false);
+  const [errorPasswordMsg, setErrorPasswordMsg] = useState('');
+  const [errorEmail, setErrorEmail] = useState(false);
+  const [errorEmailMsg, setErrorEmailMsg] = useState('');
   const { myUser, setMyUser } = useUserContext();
   const navigate = useNavigate();
 
@@ -46,6 +50,27 @@ const RegisterPage = () => {
       setError(true);
       setIsLoading(false);
       setErrorMsg(error.response.data.msg);
+    }
+  }
+
+  const checkEmail = (e) => {
+    const value = e.target.value;
+    const pattern = /^(.+\@.+\..+)$/;
+    if (!pattern.test(value)) {
+      setErrorEmail(true);
+      setErrorEmailMsg('El email introducido no es válido')
+    } else {
+      setErrorEmail(false);
+    }
+  }
+
+  const checkPassword = (e) => {
+    const value = e.target.value;
+    if (value.length < 6) {
+      setErrorPassword(true);
+      setErrorPasswordMsg('La contraseña debe tener al menos 6 caracteres');
+    } else {
+      setErrorPassword(false);
     }
   }
 
@@ -91,8 +116,10 @@ const RegisterPage = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onBlur={checkEmail}
             />
           </div>
+          {errorEmail && <div className="alert alert-danger" role="alert">{errorEmailMsg}</div>}
           <div className="mb-3">
             <label className='form-label' htmlFor="password">Contraseña:</label>
             <input className="form-control"
@@ -101,8 +128,10 @@ const RegisterPage = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              onBlur={checkPassword}
             />
           </div>
+          {errorPassword && <div className="alert alert-danger" role="alert">{errorPasswordMsg}</div>}
           <div className="d-flex justify-content-center mb-3">
             {isLoading ? <div className="spinner-border" role="status">
               <span className="visually-hidden">Loading...</span>
