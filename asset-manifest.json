@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Proyecto-Final-DAW/static/css/main.8235fdae.css",
+    "main.js": "/Proyecto-Final-DAW/static/js/main.46456a5c.js",
+    "static/media/logo-header.png": "/Proyecto-Final-DAW/static/media/logo-header.69d02e5f144cb3528489.png",
+    "static/media/logo-footer.png": "/Proyecto-Final-DAW/static/media/logo-footer.d1c622730594b0043395.png",
+    "index.html": "/Proyecto-Final-DAW/index.html",
+    "main.8235fdae.css.map": "/Proyecto-Final-DAW/static/css/main.8235fdae.css.map",
+    "main.46456a5c.js.map": "/Proyecto-Final-DAW/static/js/main.46456a5c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8235fdae.css",
+    "static/js/main.46456a5c.js"
+  ]
+}
