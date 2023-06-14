@@ -4,7 +4,7 @@ import { Footer, Navbar } from "./components";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Proyecto-Final-DAW">
       <div className="container">
         <Navbar />
         <Routes>
